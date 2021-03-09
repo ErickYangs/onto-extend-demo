@@ -7,10 +7,10 @@ type Props = {
 const HeadInfo: FC<Props> = ({ account }) => {
   return (
     <div>
-      当前账号：
+      Current Account：
       {account}
     </div>
   )
 }
 
-export default HeadInfo
+export default HeadInfo;
