@@ -1,20 +1,22 @@
-import React, { FC, useState } from 'react'
-import { Layout, message, Card, Button } from 'antd'
+import React, {FC, useState} from 'react'
+import {Button, Card, Layout, message} from 'antd'
 import HeadInfo from '../../views/HeadInfo'
-import { client } from '@ont-dev/ontology-dapi'
+import {client, provider} from '@ont-dev/ontology-dapi'
 import OntNetwork from '../../views/ONT/Network'
 import OntProvider from '../../views/ONT/Provider'
-import { Route } from 'react-router-dom'
+import {Route, useHistory} from 'react-router-dom'
 import OntInvoke from '../../views/ONT/Invoke'
 import OntInvokeWasm from '../../views/ONT/InvokeWasm'
-import { useHistory } from 'react-router-dom'
+
 const { Header, Content } = Layout
 const OntLay: FC = () => {
   const [account, setAccount] = useState<string>('')
   const history = useHistory()
   const handlerInitOnt = () => {
     try {
-      client.registerClient({})
+      client.registerClient({
+        extension: provider.ExtensionType.Onto
+      })
       message.success('init success')
     } catch (e) {
       message.error('init fail')
@@ -73,7 +75,7 @@ const OntLay: FC = () => {
                 history.push('/ont/invokeWasm')
               }}
             >
-              invokeWasmRead
+              invokeWasm
             </Button>
           </Card>
           <div>

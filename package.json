@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ont-dev/ontology-dapi": "^0.5.6",
+    "@ont-dev/ontology-dapi": "^0.5.7",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,6 +16,7 @@
     "bignumber.js": "^9.0.1",
     "final-form": "^4.20.2",
     "final-form-arrays": "^3.0.2",
+    "onto-provider": "^0.0.9",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-final-form": "^6.5.2",

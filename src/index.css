@@ -66,3 +66,8 @@ code {
   height: 100%;
   word-break: break-all;
 }
+.overflow-y-lay {
+  max-height: 200px;
+  overflow-y: auto;
+  word-break: break-all;
+}
