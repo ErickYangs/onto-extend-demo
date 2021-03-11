@@ -19,6 +19,8 @@ initProvider()
 const ETHApprove: FC = () => {
   const [approveResult, setApproveResult] = useState<string>('')
   const [allowance, setAllowance] = useState<string>('')
+  const [currentHash, setCurrentHash] = useState<string>('')
+  const [receipt, setReceipt] = useState<string>('')
 
   const handlerApprove = async () => {
     // const web3 = new Web3((window as any).onto)
@@ -49,6 +51,9 @@ const ETHApprove: FC = () => {
         .on('transactionHash', (res: any) => {
           console.log('res1', res)
           setApproveResult(JSON.stringify(res))
+        })
+        .on('receipt', (receipt: string) => {
+          console.info('on receipt:', receipt)
         })
         .on('error', (err: any) => {
           console.log('err2', err)
@@ -112,14 +117,13 @@ const ETHApprove: FC = () => {
     // @ts-ignore
     web3.eth
       .sendTransaction(signParams)
-      .on('transactionHash', async (res) => {
-        console.log('transactionHash', res)
-      })
       .on('transactionHash', (hash: string) => {
         console.info('on transactionHash:', hash)
+        setCurrentHash(hash)
       })
       .on('receipt', (receipt: any) => {
         console.info('on receipt:', receipt)
+         setReceipt(JSON.stringify(receipt))
       })
       .on('error', (err: any) => {
         console.info('on err:', err)
@@ -148,7 +152,10 @@ const ETHApprove: FC = () => {
           SendTransaction
         </Button>
         <div className={'overflow-y-lay'} style={{ marginTop: '20px' }}>
-          Result: {allowance}
+          Result: {currentHash}
+        </div>
+        <div className={'overflow-y-lay'} style={{ marginTop: '20px' }}>
+          receipt: {receipt}
         </div>
       </Card>
     </Card>
