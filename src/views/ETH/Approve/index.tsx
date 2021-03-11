@@ -48,6 +48,9 @@ const ETHApprove: FC = () => {
           console.log('res1', res)
           setApproveResult(JSON.stringify(res))
         })
+        .on('receipt', (receipt: string) => {
+          console.info('on receipt:', receipt)
+        })
         .on('error', (err: any) => {
           console.log('err2', err)
         })
