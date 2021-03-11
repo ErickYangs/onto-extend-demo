@@ -16,7 +16,7 @@
     "bignumber.js": "^9.0.1",
     "final-form": "^4.20.2",
     "final-form-arrays": "^3.0.2",
-    "onto-provider": "^0.0.9",
+    "onto-provider": "^0.0.12",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-final-form": "^6.5.2",

@@ -1,16 +1,21 @@
-import { initProvider } from 'onto-provider'
+import { initProvider, OntoProvider } from 'onto-provider'
 import React, { FC, useEffect, useState } from 'react'
-import {Button, Card, Layout, message} from 'antd'
+import { Button, Card, Layout, message } from 'antd'
 import Web3 from 'web3'
 import HeadInfo from '../../views/HeadInfo'
 // import { Route } from 'react-router-dom'
 // import { useHistory } from 'react-router-dom'
 import ETHBlockNumber from '../../views/ETH/BlockNumber'
-import ETHCoinBase from "../../views/ETH/CoinBase";
-import ETHApprove from "../../views/ETH/Approve";
+import ETHCoinBase from '../../views/ETH/CoinBase'
+import ETHApprove from '../../views/ETH/Approve'
 
-initProvider();
+// const Provider = new OntoProvider()
+// // @ts-ignore
+// const web3 = new Web3(Provider)
+
+initProvider()
 const web3 = new Web3((window as any).onto)
+
 // const web3 = new Web3(Web3.givenProvider);
 
 const { Header, Content } = Layout
@@ -23,12 +28,57 @@ const EthLay: FC = () => {
   const [estimateGas, setEstimateGas] = useState<string>('')
   // const history = useHistory()
 
+  const initEvent = () => {
+    // @ts-ignore
+    window.onto.on('accountsChanged', (accounts) => {
+      console.log('accountsChanged', accounts)
+    })
+    // @ts-ignore
+    window.onto.on('networkChanged', (result) => {
+      console.log('networkChanged', result)
+    })
+    // @ts-ignore
+    window.onto.on('connect', (result) => {
+      console.log('connect', result)
+    })
+    // @ts-ignore
+    window.onto.on('disconnect', (result) => {
+      console.log('disconnect', result)
+    })
+    // @ts-ignore
+    window.onto.on('message', (result) => {
+      console.log('message', result)
+    })
+    // @ts-ignore
+    // window.ethereum.on('accountsChanged', (accounts) => {
+    //   console.log('accountsChanged', accounts)
+    // })
+    // // @ts-ignore
+    // window.ethereum.on('networkChanged', (result) => {
+    //   console.log('networkChanged', result)
+    // })
+    // // @ts-ignore
+    // window.ethereum.on('connect', (result) => {
+    //   console.log('connect', result)
+    // })
+    // // @ts-ignore
+    // window.ethereum.on('disconnect', (result) => {
+    //   console.log('disconnect', result)
+    // })
+    // // @ts-ignore
+    // window.ethereum.on('message', (result) => {
+    //   console.log('message', result)
+    // })
+  }
+
   const handlerInitETH = async () => {
     console.log('global', web3)
     const accounts = await web3.eth.requestAccounts()
     console.log('accounts', accounts)
+    console.log('web3.currentProvider', web3.currentProvider)
     if (accounts.length > 0) {
       setAccount(accounts[0])
+      initEvent()
     }
   }
   const handlerGetAccount = async () => {
@@ -41,37 +91,40 @@ const EthLay: FC = () => {
 
   const handlerGetBalance = async () => {
     if (!account) {
-      return message.warn('please get account');
+      return message.warn('please get account')
     }
-    const balance = await web3.eth.getBalance(account);
+    const balance = await web3.eth.getBalance(account)
     console.log('balance', balance)
     setBalance(balance)
   }
 
   const handlerGetTransactionCount = async () => {
     if (!account) {
-      return message.warn('please get account');
+      return message.warn('please get account')
     }
-    const count = await web3.eth.getTransactionCount(account);
+    const count = await web3.eth.getTransactionCount(account)
     console.log('count', count)
     setCount(count)
   }
 
   const handlerGetChainId = async () => {
-    const id = await web3.eth.getChainId();
-    console.log('id',id)
+    const id = await web3.eth.getChainId()
+    console.log('id', id)
     setChainId(id)
   }
-  const handlerGetTransactionReceipt = async () =>{
-    const receipt = await web3.eth.getTransactionReceipt('0xbcc788bab7ae0d2d175426b3aa0ff7ed578977d41be2b694f9563f95676d9bad');
-    console.log(receipt)
+  const handlerGetTransactionReceipt = async () => {
+    const receipt = await web3.eth.getTransactionReceipt(
+      '0xf26eada4a2bb203c79046e748c756dc27fc10d944c5e40a9dc602a5733e16a92',
+    )
+    console.log('receipt', receipt)
     setReceipt(JSON.stringify(receipt))
   }
 
   const handlerEstimateGas = async () => {
     const estimate = await web3.eth.estimateGas({
-      to: "0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe",
-      data: "0xc6888fa10000000000000000000000000000000000000000000000000000000000000003"
+      to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
+      data:
+        '0xc6888fa10000000000000000000000000000000000000000000000000000000000000003',
     })
     setEstimateGas(JSON.stringify(estimate))
   }
@@ -97,9 +150,7 @@ const EthLay: FC = () => {
               <Button type="primary" onClick={handlerGetChainId}>
                 getChainId
               </Button>
-              <div>
-                Result: {chainId}
-              </div>
+              <div>Result: {chainId}</div>
             </Card>
           </Card>
 
