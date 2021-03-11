@@ -1,5 +1,5 @@
 import arrayMutators from 'final-form-arrays'
-import {client, ParameterType, provider} from '@ont-dev/ontology-dapi'
+import { client, ParameterType, provider } from '@ont-dev/ontology-dapi'
 import * as React from 'react'
 import { Field, Form } from 'react-final-form'
 import { FieldArray } from 'react-final-form-arrays'
@@ -197,7 +197,7 @@ const OntInvoke: React.FC = () => {
   //     }
   // }
   useEffect(() => {
-    client.registerClient({extension: provider.ExtensionType.Onto})
+    client.registerClient({ extension: provider.ExtensionType.Cyano })
   }, [])
   return (
     <div

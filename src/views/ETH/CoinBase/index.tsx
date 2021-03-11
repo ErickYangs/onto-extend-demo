@@ -8,7 +8,8 @@ initProvider();
 const ETHCoinBase: FC = () => {
   const [coinBase, setCoinBase] = useState<string>('')
   const handlerGetCoinBase = async () => {
-    const web3 = new Web3((window as any).onto)
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider)
     try {
       const coinBase = await web3.eth.getCoinbase();
       console.log('coinBase', coinBase)

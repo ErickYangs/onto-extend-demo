@@ -10,7 +10,8 @@ const ETHBlockNumber: FC = () => {
   const [blockResult, setBlockResult] = useState<string>('');
   // const [block, serBlock] =useState<string>('');
   const handlerGetBlockNumber = async () => {
-    const web3 = new Web3((window as any).onto)
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider)
     try {
       const blockNumber = await web3.eth.getBlockNumber()
       console.log('blockNumber', blockNumber)
@@ -23,8 +24,8 @@ const ETHBlockNumber: FC = () => {
   }
 
   const handlerGetBlock = async () => {
-    // const web3 = new Web3(Web3.givenProvider)
-    const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider)
+    // const web3 = new Web3((window as any).onto)
     try {
       // 0x60389667596963e93d8dfa7f5095c29229734f8c0900f74526396ad0eb3d6a26
       // 9766328

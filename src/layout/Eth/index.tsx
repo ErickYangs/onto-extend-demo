@@ -10,8 +10,8 @@ import ETHCoinBase from "../../views/ETH/CoinBase";
 import ETHApprove from "../../views/ETH/Approve";
 
 initProvider();
-const web3 = new Web3((window as any).onto)
-// const web3 = new Web3(Web3.givenProvider);
+// const web3 = new Web3((window as any).onto)
+const web3 = new Web3(Web3.givenProvider);
 
 const { Header, Content } = Layout
 const EthLay: FC = () => {

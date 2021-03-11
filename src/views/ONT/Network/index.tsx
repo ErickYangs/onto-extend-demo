@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import { Card, Button, message } from 'antd'
-import {client, provider} from '@ont-dev/ontology-dapi'
+import { client, provider } from '@ont-dev/ontology-dapi'
 
 const OntNetwork: FC = () => {
   const [network, setNetwork] = useState<string>('')
@@ -16,7 +16,7 @@ const OntNetwork: FC = () => {
   }
   useEffect(() => {
     client.registerClient({
-      extension: provider.ExtensionType.Onto
+      extension: provider.ExtensionType.Cyano,
     })
   }, [])
   return (

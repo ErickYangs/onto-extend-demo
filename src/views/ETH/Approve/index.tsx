@@ -21,8 +21,8 @@ const ETHApprove: FC = () => {
   const [allowance, setAllowance] = useState<string>('')
 
   const handlerApprove = async () => {
-    const web3 = new Web3((window as any).onto)
-    // const web3 = new Web3(Web3.givenProvider);
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider);
     const account = await web3.eth.getAccounts()
     const underlying_address = '0x58708604BAE3e6133354cef87A042A14DcE9D1C7'
     const lock_address = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
@@ -60,8 +60,8 @@ const ETHApprove: FC = () => {
   }
 
   const handlerApproveCheck = async () => {
-    const web3 = new Web3((window as any).onto)
-    // const web3 = new Web3(Web3.givenProvider);
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider);
     const underlying_address = '0x58708604BAE3e6133354cef87A042A14DcE9D1C7'
     const lock_address = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
     try {
@@ -83,8 +83,8 @@ const ETHApprove: FC = () => {
   }
 
   const handlerSendTransaction = async () => {
-    const web3 = new Web3((window as any).onto)
-    // const web3 = new Web3(Web3.givenProvider);
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider);
     const accounts = await web3.eth.getAccounts()
     const data = await web3.eth.abi.encodeFunctionCall(JSON.parse(supplyAbi), [
       getAmount('0.0000001', 8),

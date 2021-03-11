@@ -16,7 +16,7 @@ const OntProvider: FC = () => {
   }
   useEffect(() => {
     client.registerClient({
-      extension: provider.ExtensionType.Onto
+      extension: provider.ExtensionType.Cyano,
     })
   }, [])
   return (
