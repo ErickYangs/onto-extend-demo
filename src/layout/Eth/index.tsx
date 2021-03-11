@@ -63,7 +63,7 @@ const EthLay: FC = () => {
     setChainId(id)
   }
   const handlerGetTransactionReceipt = async () =>{
-    const receipt = await web3.eth.getTransactionReceipt('0xd56a7d097ebb28171908411699b5dd65c90d9358ca370f131fc5febeb9d84003');
+    const receipt = await web3.eth.getTransactionReceipt('0xbcc788bab7ae0d2d175426b3aa0ff7ed578977d41be2b694f9563f95676d9bad');
     console.log(receipt)
     setReceipt(JSON.stringify(receipt))
   }
