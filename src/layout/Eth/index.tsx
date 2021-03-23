@@ -1,4 +1,4 @@
-import { initProvider, OntoProvider } from 'onto-provider'
+// import { initProvider, OntoProvider } from 'onto-provider'
 import React, { FC, useEffect, useState } from 'react'
 import { Button, Card, Layout, message } from 'antd'
 import Web3 from 'web3'
@@ -13,7 +13,7 @@ import ETHApprove from '../../views/ETH/Approve'
 // // @ts-ignore
 // const web3 = new Web3(Provider)
 
-initProvider()
+// initProvider()
 const web3 = new Web3((window as any).onto)
 
 // const web3 = new Web3(Web3.givenProvider);
@@ -114,7 +114,7 @@ const EthLay: FC = () => {
   }
   const handlerGetTransactionReceipt = async () => {
     const receipt = await web3.eth.getTransactionReceipt(
-      '0xf26eada4a2bb203c79046e748c756dc27fc10d944c5e40a9dc602a5733e16a92',
+      '0x4c9e6d8d598111e11a7642118107a73d6c6e2800654b1d1d3fd602bf926796c8',
     )
     console.log('receipt', receipt)
     setReceipt(JSON.stringify(receipt))
