@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 import { Button, Card, message } from 'antd'
 import Web3 from 'web3'
 import BigNumber from 'bignumber.js'
-import { initProvider } from 'onto-provider'
+// import { initProvider } from 'onto-provider'
 import { getAmount } from '../../../utils/count'
 
 BigNumber.set({
@@ -15,7 +15,7 @@ const depositAbi = '{"inputs":[{"internalType":"uint256","name":"amount","type":
 // const supplyAbi =
 //   '{"constant":false,"inputs":[{"internalType":"uint256","name":"mintAmount","type":"uint256"}],"name":"mint","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"}'
 
-initProvider()
+// initProvider()
 const ETHApprove: FC = () => {
   const [approveResult, setApproveResult] = useState<string>('')
   const [allowance, setAllowance] = useState<string>('')
