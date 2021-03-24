@@ -1,9 +1,9 @@
 import { FC, useState } from 'react'
 import { Button, Card, message } from 'antd'
 import Web3 from 'web3'
-import {initProvider} from "onto-provider";
+// import {initProvider} from "onto-provider";
 
-initProvider();
+// initProvider();
 
 const ETHBlockNumber: FC = () => {
   const [blockNumber, setBlockNumber] = useState<number>(0);

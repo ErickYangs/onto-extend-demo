@@ -1,4 +1,4 @@
-import { initProvider, OntoProvider } from 'onto-provider'
+// import { initProvider, OntoProvider } from 'onto-provider'
 import React, { FC, useEffect, useState } from 'react'
 import { Button, Card, Layout, message } from 'antd'
 import Web3 from 'web3'
@@ -9,15 +9,15 @@ import ETHBlockNumber from '../../views/ETH/BlockNumber'
 import ETHCoinBase from '../../views/ETH/CoinBase'
 import ETHApprove from '../../views/ETH/Approve'
 
-initProvider();
+// initProvider();
 // const Provider = new OntoProvider()
 // @ts-ignore
 // const web3 = new Web3(Provider)
 
-initProvider()
-const web3 = new Web3((window as any).onto)
+// initProvider()
+// const web3 = new Web3((window as any).onto)
 
-// const web3 = new Web3(Web3.givenProvider);
+const web3 = new Web3(Web3.givenProvider);
 
 const { Header, Content } = Layout
 const EthLay: FC = () => {
