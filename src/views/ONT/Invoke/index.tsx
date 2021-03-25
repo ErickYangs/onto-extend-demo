@@ -157,6 +157,8 @@ const OntInvoke: React.FC = () => {
         return Boolean(value)
       case 'Integer':
         return Number(value)
+        case 'Address':
+            return value
       case 'ByteArray':
         return value
       case 'String':
@@ -262,6 +264,7 @@ const OntInvoke: React.FC = () => {
                         <option value="Integer">Integer</option>
                         <option value="ByteArray">ByteArray</option>
                         <option value="String">String</option>
+                          <option value="Address">Address</option>
                       </Field>
                       <label>Value</label>
                       <Field name={`${name}.value`} component="input" />
@@ -327,6 +330,7 @@ const OntInvoke: React.FC = () => {
                         <option value="Integer">Integer</option>
                         <option value="ByteArray">ByteArray</option>
                         <option value="String">String</option>
+                          <option value="Address">Address</option>
                       </Field>
                       <label>Value</label>
                       <Field name={`${name}.value`} component="input" />
@@ -380,6 +384,7 @@ const OntInvoke: React.FC = () => {
                   <option value="Integer">Integer</option>
                   <option value="ByteArray">ByteArray</option>
                   <option value="String">String</option>
+                    <option value="Address">Address</option>
                 </Field>
                 <label>Value</label>
                 <Field name="parameter0" component="input" />
@@ -391,6 +396,7 @@ const OntInvoke: React.FC = () => {
                   <option value="Integer">Integer</option>
                   <option value="ByteArray">ByteArray</option>
                   <option value="String">String</option>
+                    <option value="Address">Address</option>
                 </Field>
                 <label>Value</label>
                 <Field name="parameter1" component="input" />
@@ -437,6 +443,7 @@ const OntInvoke: React.FC = () => {
                   <option value="Integer">Integer</option>
                   <option value="ByteArray">ByteArray</option>
                   <option value="String">String</option>
+                    <option value="Address">Address</option>
                 </Field>
                 <label>Name</label>
                 <Field name="parameter0name" component="input" />
@@ -450,6 +457,7 @@ const OntInvoke: React.FC = () => {
                   <option value="Integer">Integer</option>
                   <option value="ByteArray">ByteArray</option>
                   <option value="String">String</option>
+                    <option value="Address">Address</option>
                 </Field>
                 <label>Name</label>
                 <Field name="parameter1name" component="input" />
