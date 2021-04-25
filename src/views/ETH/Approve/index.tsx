@@ -11,7 +11,9 @@ BigNumber.set({
 })
 const ERC20_ABI =
   '[{"inputs":[{"internalType":"address","name":"lockProxyContractAddress","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"constant":true,"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]'
-const depositAbi = '{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"}';
+// const depositAbi = '{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"}';
+const supplyAbi = '{"constant":false,"inputs":[{"internalType":"uint256","name":"mintAmount","type":"uint256"}],"name":"mint","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"}';
+
 // const supplyAbi =
 //   '{"constant":false,"inputs":[{"internalType":"uint256","name":"mintAmount","type":"uint256"}],"name":"mint","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"function"}'
 
@@ -28,9 +30,9 @@ const ETHApprove: FC = () => {
     const account = await web3.eth.getAccounts()
     // const underlying_address = '0x58708604BAE3e6133354cef87A042A14DcE9D1C7'
     // const lock_address = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
-    const underlying_address = '0x491875b4633c33aCAcf568C4A2c86c486744802c'
-    const lock_address = '0xa7AdA778eC809D5aABC9215A9D95F7903BC93AF4'
-    const float = 8
+    const underlying_address = '0x0d179931563D001D8211eEB70a7b9ddA03e5FBB5'
+    const lock_address = '0x33BfF023467CF5ca53AEcd200a25A8C1a45a4b98'
+    const float = 9
     console.log('underlying_address', underlying_address)
     console.log('lock_address', lock_address)
     try {
@@ -71,8 +73,8 @@ const ETHApprove: FC = () => {
     // const web3 = new Web3(Web3.givenProvider);
     // const underlying_address = '0x58708604BAE3e6133354cef87A042A14DcE9D1C7'
     // const lock_address = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
-    const underlying_address = '0x491875b4633c33aCAcf568C4A2c86c486744802c'
-    const lock_address = '0xa7AdA778eC809D5aABC9215A9D95F7903BC93AF4'
+    const underlying_address = '0x0d179931563D001D8211eEB70a7b9ddA03e5FBB5'
+    const lock_address = '0x33BfF023467CF5ca53AEcd200a25A8C1a45a4b98'
     try {
       const Coin = new web3.eth.Contract(
         JSON.parse(ERC20_ABI),
@@ -95,13 +97,13 @@ const ETHApprove: FC = () => {
     const web3 = new Web3((window as any).onto)
     // const web3 = new Web3(Web3.givenProvider);
     const accounts = await web3.eth.getAccounts()
-    const data = await web3.eth.abi.encodeFunctionCall(JSON.parse(depositAbi), [
-      getAmount('0.0000001', 8),
+    const data = await web3.eth.abi.encodeFunctionCall(JSON.parse(supplyAbi), [
+      getAmount('0.0000001', 9),
     ])
     const value = '0'
     const gasPrice = await web3.eth.getGasPrice()
     const nonce = await web3.eth.getTransactionCount(accounts[0])
-    const contract = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
+    const contract = '0x33BfF023467CF5ca53AEcd200a25A8C1a45a4b98'
     const signParams = {
       from: accounts[0] || '',
       to: contract,

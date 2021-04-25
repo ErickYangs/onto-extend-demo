@@ -93,6 +93,8 @@ const EthLay: FC = () => {
     if (!account) {
       return message.warn('please get account')
     }
+    console.log('account', account);
+    
     const balance = await web3.eth.getBalance(account)
     console.log('balance', balance)
     setBalance(balance)
