@@ -25,8 +25,8 @@ const ETHApprove: FC = () => {
   const [receipt, setReceipt] = useState<string>('')
 
   const handlerApprove = async () => {
-    const web3 = new Web3((window as any).onto)
-    // const web3 = new Web3(Web3.givenProvider);
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider);
     const account = await web3.eth.getAccounts()
     // const underlying_address = '0x58708604BAE3e6133354cef87A042A14DcE9D1C7'
     // const lock_address = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
@@ -69,8 +69,8 @@ const ETHApprove: FC = () => {
   }
 
   const handlerApproveCheck = async () => {
-    const web3 = new Web3((window as any).onto)
-    // const web3 = new Web3(Web3.givenProvider);
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider);
     // const underlying_address = '0x58708604BAE3e6133354cef87A042A14DcE9D1C7'
     // const lock_address = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
     const underlying_address = '0x0d179931563D001D8211eEB70a7b9ddA03e5FBB5'
@@ -94,8 +94,8 @@ const ETHApprove: FC = () => {
   }
 
   const handlerSendTransaction = async () => {
-    const web3 = new Web3((window as any).onto)
-    // const web3 = new Web3(Web3.givenProvider);
+    // const web3 = new Web3((window as any).onto)
+    const web3 = new Web3(Web3.givenProvider);
     const accounts = await web3.eth.getAccounts()
     const data = await web3.eth.abi.encodeFunctionCall(JSON.parse(supplyAbi), [
       getAmount('0.0000001', 9),
@@ -103,7 +103,9 @@ const ETHApprove: FC = () => {
     const value = '0'
     const gasPrice = await web3.eth.getGasPrice()
     const nonce = await web3.eth.getTransactionCount(accounts[0])
-    const contract = '0x33BfF023467CF5ca53AEcd200a25A8C1a45a4b98'
+    // const contract = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
+    const contract = '0xa7AdA778eC809D5aABC9215A9D95F7903BC93AF4'
+
     const signParams = {
       from: accounts[0] || '',
       to: contract,
