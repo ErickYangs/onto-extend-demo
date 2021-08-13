@@ -15,7 +15,7 @@ const OntLay: FC = () => {
   const handlerInitOnt = () => {
     try {
       client.registerClient({
-        extension: provider.ExtensionType.Cyano
+        extension: provider.ExtensionType.Onto
       })
       message.success('init success')
     } catch (e) {
@@ -34,6 +34,20 @@ const OntLay: FC = () => {
       throw e
     }
   }
+
+  const handlerSendAsset = async () => {
+    try {
+      const result = await client.api.asset.send({
+        to: 'AVagaSMzMHdRGDn6HbW7NtTejzpvkYU5o8',
+        asset: "ONG",
+        amount: '1000000000',
+      });
+      console.log('result', result)
+    } catch (e) {
+      message.error('send fail, please try again')
+      throw e
+    }
+  }
   return (
     <div className="body-content">
       <Layout>
@@ -42,8 +56,13 @@ const OntLay: FC = () => {
         </Header>
         <Content>
           <Card>
-            <Button onClick={handlerInitOnt} type="primary">
+            <Button style={{
+              marginRight: '20px',
+            }}  onClick={handlerInitOnt} type="primary">
               initOnt
+            </Button>
+            <Button onClick={handlerSendAsset} type="primary">
+              Send Asset
             </Button>
           </Card>
           <Card>
