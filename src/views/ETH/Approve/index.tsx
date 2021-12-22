@@ -25,14 +25,14 @@ const ETHApprove: FC = () => {
   const [receipt, setReceipt] = useState<string>('')
 
   const handlerApprove = async () => {
-    // const web3 = new Web3((window as any).onto)
-    const web3 = new Web3(Web3.givenProvider);
+    const web3 = new Web3((window as any).onto)
+    // const web3 = new Web3(Web3.givenProvider);
     const account = await web3.eth.getAccounts()
     // const underlying_address = '0x58708604BAE3e6133354cef87A042A14DcE9D1C7'
     // const lock_address = '0x37A0D74916479a80b8A7eEbfBf610c2B80d40fEA'
-    const underlying_address = '0x0d179931563D001D8211eEB70a7b9ddA03e5FBB5'
-    const lock_address = '0x33BfF023467CF5ca53AEcd200a25A8C1a45a4b98'
-    const float = 9
+    const underlying_address = '0x23fea7a25bb87be89fe403971c907d9c1c0461f0'
+    const lock_address = '0x9078bfb24e1fdf5196bcccfc431aa7171659062a'
+    const float = 6
     console.log('underlying_address', underlying_address)
     console.log('lock_address', lock_address)
     try {
@@ -48,7 +48,6 @@ const ETHApprove: FC = () => {
         .approve(lock_address, tokenAmountToApprove)
         .send({
           from: account[0],
-          gas: 800000,
         })
         .on('transactionHash', (res: any) => {
           console.log('res1', res)

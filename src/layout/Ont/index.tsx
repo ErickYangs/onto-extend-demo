@@ -15,7 +15,7 @@ const OntLay: FC = () => {
   const handlerInitOnt = () => {
     try {
       client.registerClient({
-        extension: provider.ExtensionType.Onto
+        extension: provider.ExtensionType.Cyano
       })
       message.success('init success')
     } catch (e) {
@@ -48,6 +48,18 @@ const OntLay: FC = () => {
       throw e
     }
   }
+  const handlerSignMessage = async () => {
+    try {
+      let message = 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDpvbnQ6QUhndFhSb3BDenp6U0J0Y0xodjdZeWRSdUxiNG53Q3VxciNrZXlzLTEifQ==.eyJpc3MiOiJkaWQ6b250OkFIZ3RYUm9wQ3p6elNCdGNMaHY3WXlkUnVMYjRud0N1cXIiLCJqdGkiOiJkaWQ6b250OkFIZ3RYUm9wQ3p6elNCdGNMaHY3WXlkUnVMYjRud0N1cXIiLCJhdWQiOiJkaWQ6b250OkFVb2tnWk45M3ZHZW1Ib290bmVXZnVob2dTaFZaQ3o2blgiLCJuYmYiOjE2MzIyNzg2NTkyMTgsImlhdCI6MTYzMjI3ODY1OTIxOCwiZXhwIjoxNjMyMjgxMjUxMjE4LCJ2cCI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVQcmVzZW50YXRpb24iXSwidmVyaWZpYWJsZUNyZWRlbnRpYWwiOlsiZXlKaGJHY2lPaUpGVXpJMU5pSXNJbXRwWkNJNkltUnBaRHB2Ym5RNlFWSnlOa0Z3U3pJMFJWVTNiblZtVGtRMGN6RlRWM0IzVlV4SVFtVnlkSEJLWWlOclpYbHpMVEVpTENKMGVYQWlPaUpLVjFRaWZRPT0uZXlKcGMzTWlPaUprYVdRNmIyNTBPa0ZTY2paQmNFc3lORVZWTjI1MVprNUVOSE14VTFkd2QxVk1TRUpsY25Sd1NtSWlMQ0psZUhBaU9qRTJOak0wT0RBMU16QXNJbTVpWmlJNk1UWXpNVGswTkRVek1Dd2lhV0YwSWpveE5qTXhPVFEwTlRNd0xDSnFkR2tpT2lKMWNtNDZkWFZwWkRvMlpUQXpPV0l4TXkwMU16azNMVFEzTVdJdFlqWTVNeTAyWWpSbU16TTVZbVZoWTJJaUxDSjJZeUk2ZXlKQVkyOXVkR1Y0ZENJNld5Sm9kSFJ3Y3pvdkwzZDNkeTUzTXk1dmNtY3ZNakF4T0M5amNtVmtaVzUwYVdGc2N5OTJNU0lzSW1oMGRIQnpPaTh2YjI1MGFXUXViMjUwTG1sdkwyTnlaV1JsYm5ScFlXeHpMM1l4SWl3aVkzSmxaR1Z1ZEdsaGJEcG5hWFJvZFdKZllYVjBhR1Z1ZEdsallYUnBiMjRpWFN3aWRIbHdaU0k2V3lKV1pYSnBabWxoWW14bFEzSmxaR1Z1ZEdsaGJDSmRMQ0pqY21Wa1pXNTBhV0ZzVTNWaWFtVmpkQ0k2ZXlKQmJHbGhjeUk2SWtWeWFXTnJXV0Z1WjNNaUxDSkJkbUYwWVhJaU9pSm9kSFJ3Y3pvdkwyRjJZWFJoY25NdVoybDBhSFZpZFhObGNtTnZiblJsYm5RdVkyOXRMM1V2TXprM09EVTJNamcvZGowMElpd2lRbWx2SWpvaVUyaGhjbVVnZVc5MWNpQm1kVzRoSWl3aVJXMWhhV3dpT2lJeE1URTBNelF4T0RVelFIRnhMbU52YlNJc0lrbGtJam9pTXprM09EVTJNamdpTENKSmMzTjFaWEpPWVcxbElqb2lUMjUwYjJ4dloza2lMQ0oxYzJWeVgyUnBaQ0k2SW1ScFpEcHZiblE2UVdOR1RuazNkbGxWZFRoaFkwNDNZelYwV0ZCYVdsQmlWa1UyY2pGS1ZHZzNJbjBzSW1OeVpXUmxiblJwWVd4VGRHRjBkWE1pT25zaWFXUWlPaUkyTldRek5UYzNZMlZsWm1Vd1pUWTRNREExWm1aaE16VXdOVFk0WXpjMU1tRTRNakk1WlRZd0lpd2lkSGx3WlNJNklrRjBkR1Z6ZEVOdmJuUnlZV04wSW4wc0luQnliMjltSWpwN0ltTnlaV0YwWldRaU9pSXlNREl4TFRBNUxURTRWREExT2pVMU9qTXdXaUlzSW5CeWIyOW1VSFZ5Y0c5elpTSTZJbUZ6YzJWeWRHbHZiazFsZEdodlpDSjlmWDA9LkFXNTV5dzNROXdqVjB4b1EzMDRJWG8rNkZNSDl6VkltTHdxSFNITUJpQXpVWFM0UHpGb0FUTVNVNEp6cmZIWUtIKzJ5L2tBbFNQeGdwV2xMelllNkJSOD0iXX19'
+      const result = await client.api.message.signMessage({ message });
+      console.log('result', result)
+    } catch (e) {
+      message.error('send fail, please try again')
+      throw e
+    }
+  }
+
+  
   return (
     <div className="body-content">
       <Layout>
@@ -68,6 +80,9 @@ const OntLay: FC = () => {
           <Card>
             <Button onClick={handlerGetAccount} type="primary">
               getAccount
+            </Button>
+            <Button onClick={handlerSignMessage} type="primary">
+              SignMessage
             </Button>
           </Card>
           <OntNetwork />

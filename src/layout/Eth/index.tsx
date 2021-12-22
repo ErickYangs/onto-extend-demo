@@ -8,6 +8,7 @@ import HeadInfo from '../../views/HeadInfo'
 import ETHBlockNumber from '../../views/ETH/BlockNumber'
 import ETHCoinBase from '../../views/ETH/CoinBase'
 import ETHApprove from '../../views/ETH/Approve'
+import ETHSign from '../../views/ETH/Sign'
 
 // initProvider();
 // const Provider = new OntoProvider()
@@ -30,46 +31,46 @@ const EthLay: FC = () => {
   // const history = useHistory()
 
   const initEvent = () => {
-    // @ts-ignore
-    window.onto.on('accountsChanged', (accounts) => {
-      console.log('accountsChanged', accounts)
-    })
-    // @ts-ignore
-    window.onto.on('networkChanged', (result) => {
-      console.log('networkChanged', result)
-    })
-    // @ts-ignore
-    window.onto.on('connect', (result) => {
-      console.log('connect', result)
-    })
-    // @ts-ignore
-    window.onto.on('disconnect', (result) => {
-      console.log('disconnect', result)
-    })
-    // @ts-ignore
-    window.onto.on('message', (result) => {
-      console.log('message', result)
-    })
-    // @ts-ignore
-    // window.ethereum.on('accountsChanged', (accounts) => {
+    // // @ts-ignore
+    // window.onto.on('accountsChanged', (accounts) => {
     //   console.log('accountsChanged', accounts)
     // })
     // // @ts-ignore
-    // window.ethereum.on('networkChanged', (result) => {
+    // window.onto.on('networkChanged', (result) => {
     //   console.log('networkChanged', result)
     // })
     // // @ts-ignore
-    // window.ethereum.on('connect', (result) => {
+    // window.onto.on('connect', (result) => {
     //   console.log('connect', result)
     // })
     // // @ts-ignore
-    // window.ethereum.on('disconnect', (result) => {
+    // window.onto.on('disconnect', (result) => {
     //   console.log('disconnect', result)
     // })
     // // @ts-ignore
-    // window.ethereum.on('message', (result) => {
+    // window.onto.on('message', (result) => {
     //   console.log('message', result)
     // })
+    // @ts-ignore
+    window.ethereum.on('accountsChanged', (accounts) => {
+      console.log('accountsChanged', accounts)
+    })
+    // @ts-ignore
+    window.ethereum.on('networkChanged', (result) => {
+      console.log('networkChanged', result)
+    })
+    // @ts-ignore
+    window.ethereum.on('connect', (result) => {
+      console.log('connect', result)
+    })
+    // @ts-ignore
+    window.ethereum.on('disconnect', (result) => {
+      console.log('disconnect', result)
+    })
+    // @ts-ignore
+    window.ethereum.on('message', (result) => {
+      console.log('message', result)
+    })
   }
 
   const handlerInitETH = async () => {
@@ -94,8 +95,8 @@ const EthLay: FC = () => {
     if (!account) {
       return message.warn('please get account')
     }
-    console.log('account', account);
-    
+    console.log('account', account)
+
     const balance = await web3.eth.getBalance(account)
     console.log('balance', balance)
     setBalance(balance)
@@ -124,10 +125,14 @@ const EthLay: FC = () => {
   }
 
   const handlerEstimateGas = async () => {
+    let a = web3.utils.hexToNumber('0x15dce1dfc4');
+    console.log('a', a);
+    
     const estimate = await web3.eth.estimateGas({
-      to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
       data:
-        '0xc6888fa10000000000000000000000000000000000000000000000000000000000000003',
+        '0x095ea7b30000000000000000000000004fa2425edf435b52016447ab897d300d78c0afe40000000000000000000000000000000000000000033b2e3c9fd0803ce8000000',
+      gasPrice: '0x15dce1dfc4',
+      to: '0xdb0f18081b505a7de20b18ac41856bcb4ba86a1a',
     })
     setEstimateGas(JSON.stringify(estimate))
   }
@@ -204,6 +209,7 @@ const EthLay: FC = () => {
           <ETHBlockNumber />
           <ETHCoinBase />
           <ETHApprove />
+          <ETHSign account={account} />
         </Content>
       </Layout>
     </div>
